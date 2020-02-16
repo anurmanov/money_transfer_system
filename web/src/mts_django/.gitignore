@@ -1,0 +1,7 @@
+*.pyc
+*.sock
+*.txt
+*.json
+.env
+.vscode
+celerybeat-schedule

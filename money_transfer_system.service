@@ -1,0 +1,13 @@
+[Unit]
+Description=The Money Transfer System project
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+WorkingDirectory=/var/www/money_transfer_system/
+ExecStart=/usr/local/bin/docker-compose up
+ExecStop=/usr/local/bin/docker-compose down
+
+[Install]
+WantedBy=multi-user.target
