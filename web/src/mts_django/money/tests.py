@@ -111,9 +111,9 @@ class TestMoneyOperations(TestCase):
     def test_create_transfer(self):
         """Tests related to transfer creation issues"""
         #sender's info
-        user2 = {'username': 'Test40', 'email': 'test40@test40.org', 'password': '12345678', 'balance': 1000.00, 'currency': 'USD'}
+        user1 = {'username': 'Test40', 'email': 'test40@test40.org', 'password': '12345678', 'balance': 1000.00, 'currency': 'USD'}
         #receiver's info
-        user1 = {'username': 'Test41', 'email': 'test41@test41.org', 'password': '12345678', 'balance': 1000.00, 'currency': 'USD'}
+        user2 = {'username': 'Test41', 'email': 'test41@test41.org', 'password': '12345678', 'balance': 1000.00, 'currency': 'USD'}
         create_user_url = self.get_url('users/create')
         self.session.post(create_user_url, data=json.dumps(user1))
         self.session.post(create_user_url, data=json.dumps(user2))
@@ -154,7 +154,7 @@ class TestMoneyOperations(TestCase):
         self.assertNotEqual(r.status_code, 201, msg='Transfer validation errors must be: %s' % msg)
 
         #test attempts to make a transfer from someone else's account
-        transfer = {'sender_account': sender_account_pk, 'receiver_account': receiver_account_pk, 'amount': '0'}
+        transfer = {'sender_account': receiver_account_pk, 'receiver_account': sender_account_pk, 'amount': '1'}
         r = self.session.post(create_transfer_url, data=json.dumps(transfer))
         d = r.json()
         msg = '; '.join([str(m) for m in d.values()])
