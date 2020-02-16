@@ -1,5 +1,5 @@
 The Money Transfer System is REST API service based on Django Rest Framework and Docker containers.
-The purpose of the project is service for providing money transfers from user to user in different currencies and exchange rates. 
+The purpose of the project is a service for providing money transfers from user to user in different currencies and exchange rates. 
 The system allows to operate with plenty of currencies and chronological exchange rates of courses.
 Automatically downloads list of currencies and their exchange rates from service https://api.exchangeratesapi.io/latest
 Supports JSON Web Token authorization.
@@ -36,4 +36,4 @@ Project directory structure:
 Django project is located in ./web/src/mts_django.
 The project is provided by testing module located in ./web/src/mts_django/money/tests.py.
 Python requirements-file path is ./web/requirements.txt. 
-Asynchronous Celery task periodically fetches currency/rates json-data. It is coded in ./web/src/mts_django/money/tasks.py.
+Asynchronous Celery task periodically fetches currency/rates json-data and upload cuurencies and exchange rates in database. It is coded in ./web/src/mts_django/money/tasks.py.
