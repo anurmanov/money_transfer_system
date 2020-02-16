@@ -33,7 +33,7 @@ Project directory structure:
  3. redis - directory for building Redis container for supporting ampq based on redis for Celery asynchronos tasks;
  4. web - directory for building WSGI container for supporting gunicorn wsgi server, contains Django source files of the system.
 
-Django project is located in ./web/src/mts_django
-The project is provided by testing module located in ./web/src/mts_django/money/tests.py
-Python requirements-file path is ./web/requirements.txt
-Asynchronous Celery task periodically fetches currency/rates json-data. It is coded in ./web/src/mts_django/money/tasks.py
+Django project is located in ./web/src/mts_django.
+The project is provided by testing module located in ./web/src/mts_django/money/tests.py.
+Python requirements-file path is ./web/requirements.txt. 
+Asynchronous Celery task periodically fetches currency/rates json-data. It is coded in ./web/src/mts_django/money/tasks.py.
