@@ -93,6 +93,7 @@ class TransferCreateView(APIView):
         return Response(data=serializer.data, status=status.HTTP_201_CREATED)
             
 class TransferListView(APIView):
+    """View for getting transfer list of current user"""
     permission_classes = [permissions.IsAuthenticated]
     def get(self, request):
         #all accounts of the current user
