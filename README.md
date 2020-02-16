@@ -1,10 +1,10 @@
-The Money Transfer System is REST API service. The Django Rest Framework project based on Docker containers.
+The Money Transfer System is REST API service based on Django Rest Framework and Docker containers.
+The purpose of the project is service for providing money transfers from user to user in different currencies and exchange rates. 
 The system allows to operate with plenty of currencies and chronological exchange rates of courses.
-The system automatically downloads list of currencies and their exchange rates from service https://api.exchangeratesapi.io/latest
-Celery asynchronous task periodically fetches currency/rates json-data. It is coded in ./web/src/mts_django/money/tasks.py
-The system support JSON Web Token authorization.
+Automatically downloads list of currencies and their exchange rates from service https://api.exchangeratesapi.io/latest
+Supports JSON Web Token authorization.
 
-Functionality of the system is described by its rest api end-points.
+Functionality of the system is described by its REST API end-points.
 
 Main end-points:
  - /api/token/ - authenticate through JSON Web Tokens;
@@ -21,7 +21,7 @@ Main end-points:
  - /api/users/{id}/edit/ - edit particular user (HTTP PATCH method);
  - /api/users/{id}/accounts/ - get accounts of particular user (HTTP GET method);
  
- MONEY endpoints:
+ MONEY end-points:
  - /api/money/currencies/ - get list of currencies (HTTP GET method);
  - /api/money/courses/ - get list of courses rates (HTTP GET method);
  - /api/money/transfers/ - get list transfers of current user (HTTP GET method);
@@ -35,3 +35,5 @@ Project directory structure:
 
 Django project is located in ./web/src/mts_django
 The project is provided by testing module located in ./web/src/mts_django/money/tests.py
+Python requirements-file path is ./web/requirements.txt
+Asynchronous Celery task periodically fetches currency/rates json-data. It is coded in ./web/src/mts_django/money/tasks.py
