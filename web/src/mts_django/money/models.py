@@ -10,6 +10,7 @@ class Currency(models.Model):
     name = models.CharField(max_length=32, unique=True, null=False)
 
 class Course(models.Model):
+    """Exchange rate course"""
     class Meta:
         constraints = [models.UniqueConstraint(fields=['base_currency', 'currency', 'date'], name='unique__base_currency__currency___date')]
     currency = models.ForeignKey(Currency, related_name='currency', null=False, on_delete = models.CASCADE)  
@@ -22,6 +23,7 @@ class Course(models.Model):
         return new_rate
 
 class Account(models.Model):
+    """User have a lot of accounts, each for one particular currency"""
     class Meta:
         constraints = [models.UniqueConstraint(fields=['user', 'currency'], name='unique_user_and_currency'),]
         indexes = [models.Index(fields=('user',))]
@@ -35,6 +37,15 @@ class Account(models.Model):
         return account
 
 class Transfer(models.Model):
+    """Transfer entity is described by 4 fields: 
+    - sender's account;
+    - receiver's account; 
+    - amount of transfer;
+    - date of transfer creation.
+    
+    The currency of transfer is a currency of sender's account.
+    Date of transfer is fullfilled in run-time by current datetime value.
+    """
     class Meta:
         indexes = [models.Index(fields=['sender_account', ])]
     sender_account = models.ForeignKey(Account, related_name='sender_account', null=False, on_delete=models.PROTECT)
