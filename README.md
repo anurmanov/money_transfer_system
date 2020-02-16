@@ -5,6 +5,7 @@ Celery asynchronous task periodically fetches currency/rates json-data. It is co
 The system support JSON Web Token authorization.
 
 Functionality of the system is described by its rest api end-points.
+
 Main end-points:
  - /api/token/ - authenticate through JSON Web Tokens;
  - /api/token/refresh/ - refresh JWT-token;
