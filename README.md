@@ -16,7 +16,7 @@ Main endpoints:
  - /api/users/ - get list of all users (HTTP GET method);
  - /api/users/create/ - register new user (HTTP POST method);
  - /api/users/accounts/ - get current user's accounts including balance information (HTTP GET method);
- - /api/users/accounts/create/ - create new account for cuurent user (HTTP POST method);
+ - /api/users/accounts/create/ - create new account for current user (HTTP POST method);
  - /api/users/{id}/ - get info about user of particular id (HTTP GET method);
  - /api/users/{id}/edit/ - edit particular user (HTTP PATCH method);
  - /api/users/{id}/accounts/ - get accounts of particular user (HTTP GET method);
@@ -41,10 +41,33 @@ Project directory structure:
 Django project is located in ./web/src/mts_django. 
 The project is provided by testing module located in ./web/src/mts_django/money/tests.py.
 Python requirements-file path is ./web/requirements.txt. 
-Asynchronous Celery task periodically fetches currency/rates json-data and upload cuurencies and exchange rates in database. It is coded in ./web/src/mts_django/money/tasks.py.
+Asynchronous Celery task periodically fetches currency/rates json-data and upload currencies and exchange rates in database. It is coded in ./web/src/mts_django/money/tasks.py.
 
 After the first start of the service, you need to create a superuser:
  1. docker exec -it mts_wsgi /bin/bash
  2. python manage.py createsuperuser
- 
- 
+ 3. edit docker-compose.yml - add to web service such records:
+   environment:
+    - ADMIN_EMAIL=email
+    - ADMIN_PASSWORD=password
+    (email, password from step 2)
+web service must be like that:
+   web:
+    build: ./web/
+    image: wsgi:money_transfer_system
+    hostname: mts_wsgi
+    container_name: mts_wsgi
+    network_mode: host
+    environment:
+     - ADMIN_EMAIL=email
+     - ADMIN_PASSWORD=password
+    #networks: 
+    #  - local_network
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./web/celery/log:/tmp/celery.log
+      - ./web/log:/var/log/gunicorn
+      - ./web/src/mts_django:/var/www/money_transfer_system
+      - ./web/init/gunicorn.py:/etc/gunicorn/gunicorn.py
