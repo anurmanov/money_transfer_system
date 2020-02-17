@@ -51,7 +51,9 @@ After the first start of the service, you need to create a superuser:
     - ADMIN_EMAIL=email
     - ADMIN_PASSWORD=password
     (email, password from step 2)
+    
 web service must be like that:
+
    web:
     build: ./web/
     image: wsgi:money_transfer_system
