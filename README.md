@@ -4,15 +4,15 @@ The system allows operating with plenty of currencies and chronological exchange
 Automatically downloads a list of currencies and their exchange rates from service https://api.exchangeratesapi.io/latest
 Supports JSON Web Token authorization.
 
-Functionality of the system is described by its REST API end-points.
+Functionality of the system is described by its REST API endpoints.
 
-Main end-points:
+Main endpoints:
  - /api/token/ - authenticate through JSON Web Tokens;
  - /api/token/refresh/ - refresh JWT-token;
  - /api/users/ - user issues 
  - /api/money/ - money transfer issues
  
- USERS end-points:
+ USERS endpoints:
  - /api/users/ - get list of all users (HTTP GET method);
  - /api/users/create/ - register new user (HTTP POST method);
  - /api/users/accounts/ - get current user's accounts including balance information (HTTP GET method);
@@ -21,7 +21,7 @@ Main end-points:
  - /api/users/{id}/edit/ - edit particular user (HTTP PATCH method);
  - /api/users/{id}/accounts/ - get accounts of particular user (HTTP GET method);
  
- MONEY end-points:
+ MONEY endpoints:
  - /api/money/currencies/ - get list of currencies (HTTP GET method);
  - /api/money/courses/ - get list of courses rates (HTTP GET method);
  - /api/money/transfers/ - get list transfers of current user (HTTP GET method);
