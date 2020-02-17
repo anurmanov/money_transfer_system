@@ -38,7 +38,7 @@ Project directory structure:
  
  Each docker directory of the system (postgres, redis, nginx, web) contains inside 'log' subdirectory for logging subsystem events and errors. 
 
-Django project is located in ./web/src/mts_django.
+Django project is located in ./web/src/mts_django. 
 The project is provided by testing module located in ./web/src/mts_django/money/tests.py.
 Python requirements-file path is ./web/requirements.txt. 
 Asynchronous Celery task periodically fetches currency/rates json-data and upload cuurencies and exchange rates in database. It is coded in ./web/src/mts_django/money/tasks.py.
