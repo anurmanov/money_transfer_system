@@ -9,7 +9,7 @@ Functionality of the system is described by its REST API endpoints.
 Main endpoints:
  - /api/token/ - authenticate through JSON Web Tokens;
  - /api/token/refresh/ - refresh JWT-token;
- - /api/users/ - user issues 
+ - /api/users/ - user issues;
  - /api/money/ - money transfer issues
  
  USERS endpoints:
@@ -19,7 +19,7 @@ Main endpoints:
  - /api/users/accounts/create/ - create new account for current user (HTTP POST method);
  - /api/users/{id}/ - get info about user of particular id (HTTP GET method);
  - /api/users/{id}/edit/ - edit particular user (HTTP PATCH method);
- - /api/users/{id}/accounts/ - get accounts of particular user (HTTP GET method);
+ - /api/users/{id}/accounts/ - get accounts of particular user (HTTP GET method).
  
  MONEY endpoints:
  - /api/money/currencies/ - get list of currencies (HTTP GET method);
