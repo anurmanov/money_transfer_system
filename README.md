@@ -50,7 +50,8 @@ After the first start of the service, you need to create a superuser:
    environment:
     - ADMIN_EMAIL=email
     - ADMIN_PASSWORD=password
-    (email, password from step 2)
+    
+   (email, password from step 2)
     
 web service must be like that:
 
