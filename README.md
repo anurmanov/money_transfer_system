@@ -56,7 +56,9 @@ web service must be like that:
 
    web:
     build: ./web/
+    
     image: wsgi:money_transfer_system
+    
     hostname: mts_wsgi
     container_name: mts_wsgi
     network_mode: host
