@@ -61,8 +61,6 @@ web service must be like that:
     environment:
      - ADMIN_EMAIL=email
      - ADMIN_PASSWORD=password
-    #networks: 
-    #  - local_network
     depends_on:
       - postgres
       - redis
