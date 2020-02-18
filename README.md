@@ -34,7 +34,8 @@ Project directory structure:
  4. web - directory for building WSGI container for supporting gunicorn wsgi server, contains Django source files of the system;
  5. docker-compose.yml - Docker Compose CE YAML file;
  6. money_transfer_system.service - SystemD service configuration file;
- 7. setup.sh - Bash script file for installing service.
+ 7. setup.sh - Bash script file for installing service;
+ 8. Тестовое задание.pdf - pdf file containing customer requirements for project.
  
  Each docker directory of the system (postgres, redis, nginx, web) contains inside 'log' subdirectory for logging subsystem events and errors. 
 
