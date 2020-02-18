@@ -20,20 +20,11 @@ def update_courses(self, fetch_courses_url = settings.FETCH_COURSES_URL):
         dt = date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
     else:
         raise Exception('Date format "yyyy-mm-dd" was changed in json!')
-    try:
-        base_currency = Currency.objects.get(name=base_currency_name)
-    except ObjectDoesNotExist:
-        base_currency = Currency.objects.create(name=base_currency_name)
-    for currency_name in rates:
-        try:
-            currency = Currency.objects.get(name=currency_name)
-        except ObjectDoesNotExist:
-            currency = Currency.objects.create(name=currency_name)
-        try:
-            Course.objects.get(Q(base_currency=base_currency) & Q(currency=currency) & Q(date=dt))
-        except ObjectDoesNotExist:
-            Course.create(currency, base_currency, rates[currency_name], dt)
 
+    base_currency, created = Currency.objects.get_or_create(name=base_currency_name)
+    for currency_name in rates:
+        currency = Currency.objects.get_or_create(name=currency_name)
+        Course.objects.get_or_create(Q(base_currency=base_currency) & Q(currency=currency) & Q(date=dt), defaults={'course': rates[currency_name]})
 
 #Config dictionary for periodic Celery task
 app.conf.beat_schedule = {

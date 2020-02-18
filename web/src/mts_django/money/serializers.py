@@ -2,6 +2,7 @@ import sys
 import logging
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
+from django.db import transaction, IntegrityError
 from rest_framework import serializers
 from money.models import Currency, Course, Account, Transfer, convert_amount
 from users.models import User
@@ -120,14 +121,16 @@ class TransferCreateSerializer(serializers.Serializer):
         sender_account = validated_data.get('sender_account', None)
         receiver_account = validated_data.get('receiver_account', None)
         amount = validated_data.get('amount', None)
-        converted_amount = validated_data.get('converted_amount', None)
-        #sender's balance reduced on amount
-        sender_account.balance -= amount
-        sender_account.save()
-        #receiver's balance increased on converted_amount
-        receiver_account.balance += converted_amount
-        receiver_account.save()
-        return Transfer.create(sender_account, receiver_account, amount)
+        with transaction.atomic():
+            converted_amount = validated_data.get('converted_amount', None)
+            #sender's balance reduced on amount
+            sender_account.balance -= amount
+            sender_account.save()
+            #receiver's balance increased on converted_amount
+            receiver_account.balance += converted_amount
+            receiver_account.save()
+            new_transfer = Transfer.create(sender_account, receiver_account, amount)
+        return new_transfer
 
 class TransferSerializer(serializers.ModelSerializer):
     """List of transfers"""

@@ -38,6 +38,7 @@ class AccountListForOwnerView(APIView):
         account_list = Account.objects.filter(user=request.user)
         serializer = AccountForOwnerSerializer(account_list, many=True)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+        
     def post(sef, request):
         serializer = AccountCreateSerializer(data=request.data, context={'owner': request.user})
         if not serializer.is_valid():
