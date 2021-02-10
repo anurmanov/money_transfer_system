@@ -3,4 +3,3 @@ __init__.py
 fixtures
 fixtures/*
 static
-postgres/log/*

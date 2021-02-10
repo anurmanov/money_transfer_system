@@ -1,0 +1,6 @@
+postgres/log/*
+nginx/log/*
+redis/data
+redis/log/redis.log
+web/celery/log
+web/log
