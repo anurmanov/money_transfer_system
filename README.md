@@ -1,7 +1,7 @@
 The Money Transfer System is REST API service based on Django Rest Framework and Docker containers.
-The purpose of the project is a service for providing money transfers from user to user in different currencies and exchange rates. 
-The system allows operating with plenty of currencies and chronological exchange rates of courses.
-Automatically downloads a list of currencies and their exchange rates from service https://api.exchangeratesapi.io/latest
+The purpose of the project is a providing service for money transfering from user to user in different currencies and exchange rates. 
+The system allows operating with plenty of currencies and chronological exchange rates of currency courses.
+It automatically downloads a list of currencies and their exchange rates from service https://api.exchangeratesapi.io/latest
 Supports JSON Web Token authorization.
 
 Functionality of the system is described by its REST API endpoints.
@@ -12,7 +12,7 @@ Main endpoints:
  - /api/users/ - user issues;
  - /api/money/ - money transfer issues
  
- USERS endpoints:
+USERS endpoints:
  - /api/users/ - get list of all users (HTTP GET method);
  - /api/users/create/ - register new user (HTTP POST method);
  - /api/users/accounts/ - get current user's accounts including balance information (HTTP GET method);
@@ -21,28 +21,28 @@ Main endpoints:
  - /api/users/{id}/edit/ - edit particular user (HTTP PATCH method);
  - /api/users/{id}/accounts/ - get accounts of particular user (HTTP GET method).
  
- MONEY endpoints:
+MONEY endpoints:
  - /api/money/currencies/ - get list of currencies (HTTP GET method);
  - /api/money/courses/ - get list of courses rates (HTTP GET method);
  - /api/money/transfers/ - get list transfers of current user (HTTP GET method);
  - /api/money/transfers/create/ - create new transfer (HTTP POST method).
  
 Project directory structure:
- 1. postgres - directory for building PostgreSQL container for supporting database of the project;
- 2. nginx - directory for building Nginx container for supporting web-server of the project;
- 3. redis - directory for building Redis container for supporting ampq based on redis for Celery asynchronos tasks;
- 4. web - directory for building WSGI container for supporting gunicorn wsgi server, contains Django source files of the system;
- 5. docker-compose.yml - Docker Compose CE YAML file;
- 6. money_transfer_system.service - SystemD service configuration file;
- 7. setup.sh - Bash script file for installing service;
- 8. Тестовое задание.pdf - pdf file containing functional and nonfunctional requirements for project (in russian language).
+ - postgres - directory for building PostgreSQL container;
+ - nginx - directory for building Nginx container;
+ - redis - directory for building Redis container for supporting ampq based on redis for Celery asynchronous tasks;
+ - web - directory for building WSGI container for supporting gunicorn wsgi server, contains Django source files of the system;
+ - docker-compose.yml - Docker Compose CE YAML file;
+ - money_transfer_system.service - SystemD service configuration file;
+ - setup.sh - Bash script file for installing service;
+ - Technical task.txt - text file containing functional and nonfunctional requirements of the project.
  
  Each docker directory of the system (postgres, redis, nginx, web) contains inside 'log' subdirectory for logging subsystem events and errors. 
 
-Django project is located in ./web/src/mts_django. 
-The project is provided by testing module located in ./web/src/mts_django/money/tests.py.
+Django project is located in ./web/src/project. 
+The project is provided by testing module located in ./web/src/project/money/tests.py.
 Python requirements-file path is ./web/requirements.txt. 
-Asynchronous Celery task periodically fetches currency/rates json-data and upload currencies and exchange rates in database. It is coded in ./web/src/mts_django/money/tasks.py.
+Asynchronous Celery task periodically fetches currency/rates json-data and upload currencies and exchange rates in database. It is coded in ./web/src/project/money/tasks.py.
 
 After the first start of the service, you need to create a superuser:
  1. docker exec -it mts_wsgi /bin/bash
@@ -70,5 +70,5 @@ web service must be like that:
     volumes:
       - ./web/celery/log:/tmp/celery.log
       - ./web/log:/var/log/gunicorn
-      - ./web/src/mts_django:/var/www/money_transfer_system
+      - ./web/src/project:/var/www/money_transfer_system
       - ./web/init/gunicorn.py:/etc/gunicorn/gunicorn.py

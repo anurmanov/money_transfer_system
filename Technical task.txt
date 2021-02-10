@@ -1,0 +1,33 @@
+Project "Money Transfer system"
+
+Description
+
+The project is a REST API project that allows you to perform the following actions:
+- register the user specifying such information as:
+  - initial balance
+  - account currency
+  - email (unique; used for login)
+  - password
+- authenticate the user via email and password
+- transfer money from your account to another one
+- view the list of all transactions on your account
+- update exchange rates from a third-party resource (for example, exchangeratesapi.io) once every N times (for example, every 3 minutes)
+
+There are mandatory currencies in the system: EUR, USD, GPB, RUB, BTC
+
+System Requirements:
+- the system must be implemented using one of the python framework:
+  - Django
+  - Flask
+  - aiohttp
+  - Sanic
+  - Bottle
+  - etc.
+- for data storage, the Postgres DBMS Head must
+- the code must run in Docker containers
+- the code must be covered by unit tests
+
+Non-system requirements:
+- the project should be finished in 4-8 hours
+- the project should contain a README-file, which will describe how to start the project
+- the project must be uploaded to GitHub/GitLab/BitBucket

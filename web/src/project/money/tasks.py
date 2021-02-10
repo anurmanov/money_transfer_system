@@ -4,7 +4,7 @@ import requests
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.conf import settings
-from mts_django.celery import app
+from project.celery import app
 from money.models import Currency, Course
 
 @app.task(bind = True, expires = 120, acks_late = True)

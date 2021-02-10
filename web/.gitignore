@@ -1,0 +1,6 @@
+*.log
+__init__.py
+fixtures
+fixtures/*
+static
+postgres/log/*

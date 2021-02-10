@@ -6,7 +6,8 @@ from decimal import Decimal
 from datetime import datetime
 import requests
 from django.test import TestCase
-from mts_django.settings import DATABASES
+from rest_framework.test import APIRequestFactory
+from project.settings import DATABASES
 from money.models import *
 from users.models import *
 
@@ -17,6 +18,7 @@ class TestMoneyOperations(TestCase):
     def setUp(self):
         """Initialize parameters for next HTTP requests"""
         self.session = requests.Session()
+        self.factory = APIRequestFactory()
         self.protocol = 'http:/'
         self.host = '127.0.0.1'
         self.port = '8000'
