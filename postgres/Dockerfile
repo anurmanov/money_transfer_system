@@ -1,5 +1,5 @@
 FROM postgres:10.10
-MAINTAINER alisher.nurmanov@inbox.ru
+LABEL maintainer=alisher.nurmanov@inbox.ru
 RUN apt-get update && apt-get install -y && apt-get install -y postgresql-plpython3-10 && apt-get install -y nano
 EXPOSE 5432/tcp
 USER postgres
