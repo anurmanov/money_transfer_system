@@ -2,7 +2,7 @@ Project "Money Transfer system"
 
 Description
 
-The project is a REST API project that allows you to perform the following actions:
+The project is a REST API service that allows you to perform the following actions:
 - register the user specifying such information as:
   - initial balance
   - account currency
